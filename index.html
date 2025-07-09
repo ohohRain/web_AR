@@ -1,50 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pod AR Viewer</title>
-    
+
     <!-- Import model-viewer component -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-    
+
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Pod AR Viewer</h1>
             <p>View our pod in your space</p>
         </header>
-        
+
         <div class="viewer-container">
             <!-- Model viewer component -->
-            <model-viewer
-                id="pod-viewer"
-                src="models/benchy.glb"
-                alt="A 3D model of benchy"
-                camera-controls
-                auto-rotate
-                ar
-                ar-modes="webxr scene-viewer quick-look"
-                ar-scale="fixed"
-                scale="0.001 0.001 0.001"
-                
+            <model-viewer id="pod-viewer" src="models/scene.glb" alt="Custom PODS MVP" camera-controls auto-rotate ar
+                ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" scale="0.8 0.8 0.8" orientation="0 0 0">
+
                 <!-- AR button slot -->
                 <button slot="ar-button" id="ar-button">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" stroke="white" stroke-width="2"/>
-                        <path d="M17 17l4 4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z" stroke="white" stroke-width="2" />
+                        <path d="M17 17l4 4" stroke="white" stroke-width="2" stroke-linecap="round" />
                     </svg>
                     View in AR
                 </button>
-                
+
                 <!-- Loading indicator -->
                 <div class="progress-bar" slot="progress-bar">
                     <div class="update-bar"></div>
                 </div>
-                
+
                 <!-- AR prompt -->
                 <div id="ar-prompt" class="ar-prompt">
                     <img src="https://modelviewer.dev/shared-assets/icons/hand.png" alt="Hand icon">
@@ -52,7 +46,7 @@
                 </div>
             </model-viewer>
         </div>
-        
+
         <div class="instructions">
             <h2>How to use:</h2>
             <ol>
@@ -63,14 +57,15 @@
                 <li>Use gestures to rotate and scale</li>
             </ol>
         </div>
-        
+
         <div class="model-info">
             <h3>Note:</h3>
-            <p>Model loaded: 3DBenchy boat</p>
+            <p>Model loaded: Custom PODS MVP</p>
             <p>AR features require a compatible device with ARCore (Android) or ARKit (iOS)</p>
         </div>
     </div>
-    
+
     <script src="js/app.js"></script>
 </body>
+
 </html>
