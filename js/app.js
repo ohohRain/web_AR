@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add keyboard controls for desktop testing
     addKeyboardControls();
+    
+    // Initialize color controls
+    initializeColorControls();
 });
 
 // Check if AR is supported on the device
@@ -69,7 +72,14 @@ function checkARSupport() {
         return;
     }
     
-    if (!modelViewer.canActivateAR) {
+    // Check Android device
+    if (navigator.userAgent.includes('Android')) {
+        if (!modelViewer.canActivateAR) {
+            arButton.style.display = 'none';
+            showInfo('AR requires ARCore support. Check if your device is compatible at: https://developers.google.com/ar/devices');
+            console.log('Android device detected but ARCore not supported');
+        }
+    } else if (!modelViewer.canActivateAR) {
         arButton.style.display = 'none';
         showInfo('AR is not supported on this device. You can still view the 3D model.');
     }
@@ -147,6 +157,38 @@ function addKeyboardControls() {
                 modelViewer.cameraOrbit = modelViewer.cameraOrbit.replace(/[\d.]+m$/, `${Math.min(5, currentDist + 0.5)}m`);
                 break;
         }
+    });
+}
+
+// Initialize color controls
+function initializeColorControls() {
+    const modelViewer = document.querySelector('#pod-viewer');
+    const customColorPicker = document.querySelector('#custom-color');
+    
+    // Function to apply color to model
+    function applyColor(color) {
+        modelViewer.addEventListener('load', () => {
+            const material = modelViewer.model?.materials[0];
+            if (material) {
+                material.pbrMetallicRoughness.setBaseColorFactor(color);
+            }
+        });
+        
+        // If model already loaded, apply immediately
+        const material = modelViewer.model?.materials[0];
+        if (material) {
+            material.pbrMetallicRoughness.setBaseColorFactor(color);
+        }
+    }
+    
+    // Handle custom color picker
+    customColorPicker.addEventListener('change', (e) => {
+        applyColor(e.target.value);
+    });
+    
+    // Set initial color to grey
+    modelViewer.addEventListener('load', () => {
+        applyColor('#808080');
     });
 }
 

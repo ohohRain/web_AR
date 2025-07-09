@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pod AR Viewer</title>
+    <title>OZI AR Viewer</title>
 
     <!-- Import model-viewer component -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -16,13 +16,14 @@
 <body>
     <div class="container">
         <header>
-            <h1>Pod AR Viewer</h1>
-            <p>View our pod in your space</p>
+            <h1>OZI AR Viewer</h1>
+            <p>Experience our innovative OZI design in augmented reality</p>
         </header>
 
-        <div class="viewer-container">
+        <div class="content-wrapper">
+            <div class="viewer-container">
             <!-- Model viewer component -->
-            <model-viewer id="pod-viewer" src="models/scene.glb" alt="Custom PODS MVP" camera-controls auto-rotate ar
+            <model-viewer id="pod-viewer" src="models/ozi.glb" alt="OZI" camera-controls auto-rotate ar
                 ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" scale="0.8 0.8 0.8" orientation="0 0 0">
 
                 <!-- AR button slot -->
@@ -45,23 +46,14 @@
                     <p>Move your device around to scan your space</p>
                 </div>
             </model-viewer>
-        </div>
-
-        <div class="instructions">
-            <h2>How to use:</h2>
-            <ol>
-                <li>Click "View in AR" button</li>
-                <li>Allow camera access when prompted</li>
-                <li>Point your camera at a flat surface</li>
-                <li>Tap to place the pod in your space</li>
-                <li>Use gestures to rotate and scale</li>
-            </ol>
-        </div>
-
-        <div class="model-info">
-            <h3>Note:</h3>
-            <p>Model loaded: Custom PODS MVP</p>
-            <p>AR features require a compatible device with ARCore (Android) or ARKit (iOS)</p>
+            
+            <div class="color-controls">
+                <h3>Customize Color</h3>
+                <div class="color-options">
+                    <input type="color" id="custom-color" value="#808080">
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 
